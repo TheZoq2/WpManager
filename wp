@@ -1,0 +1,36 @@
+#!/bin/python
+
+import sys
+import time
+
+import wpmClient
+import stringParser
+
+TIMER_ALIASES = ["timer", "t"]
+RESET_ALIASES = ["reset", "r"]
+START_ALIASES = ["start", "s"]
+CHECK_ALIASES = ["check", "chk", "c"]
+
+KILL_ALIASES = ["kill", "k"]
+
+#If a timer should be modified
+if(sys.argv[1] in TIMER_ALIASES):
+    if(sys.argv[2] in RESET_ALIASES):
+        wpmClient.sendCommand("timer.reset")
+    elif(sys.argv[2] in START_ALIASES):
+        #Parse the next argument for the time of the timer
+        time = stringParser.parseTimeString(sys.argv[3])
+        
+        if time != -1:
+            wpmClient.sendCommand("timer.start={}".format(time))
+        else:
+            print("invalid time ofrmat")
+    elif sys.argv[2] in CHECK_ALIASES:
+        wpmClient.sendCommand("timer.check")
+    else:
+        print("Unknown timer command")
+elif sys.argv[1] in KILL_ALIASES:
+    wpmClient.sendCommand("kill.")
+else:
+    print("Unknown command")
+             
