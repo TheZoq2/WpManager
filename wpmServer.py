@@ -1,3 +1,4 @@
+#!/bin/python
 from multiprocessing import connection
 import threading
 import time
