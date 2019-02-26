@@ -79,10 +79,10 @@ def run_server():
 
         def notifyWallpaper(self):
             subprocess.call(["convert", self.wallpaperPath, "-fill", "red", "-colorize", "25", WALLPAPER_FOLDER + WP_FILENAME])
-            subprocess.call(["feh", "--bg-fill", "--no-xinerama", WALLPAPER_FOLDER + WP_FILENAME])
+            subprocess.call(["feh", "--bg-fill", WALLPAPER_FOLDER + WP_FILENAME])
 
         def resetWallpaper(self):
-            subprocess.call(["feh", "--bg-fill", "--no-xinerama", self.wallpaperPath])
+            subprocess.call(["feh", "--bg-fill", self.wallpaperPath])
             
 
     mc = MainClass("/home/frans/Pictures/wallpapers/current.png")
